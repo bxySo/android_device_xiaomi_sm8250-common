@@ -73,6 +73,9 @@ function blob_fixup() {
         vendor/lib64/libril-qc-hal-qmi.so)
             sed -i 's|ro.product.vendor.device|ro.vendor.radio.midevice|g' "${2}"
             ;;
+        vendor/lib64/libwvhidl.so)
+            $PATCHELF --replace-needed "libcrypto.so" "libcrypto-v34.so" "${2}"
+            ;;
     esac
 }
 
